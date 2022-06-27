@@ -1,9 +1,10 @@
-let secret = require("./secret")
+//let secret = require("./secret")
 
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-tracer");
 require('@nomiclabs/hardhat-ethers');
+require('dotenv').config()
 
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_KEY} = process.env;
@@ -20,19 +21,15 @@ module.exports = {
     }
   },
   networks: {
-    testnet: {
-      url: secret.url,
-      accounts: [secret.key],
-      
-    },
+  
     rinkeby: {
       url: "https://speedy-nodes-nyc.moralis.io/26e50ab044cfb048e9442a7f/eth/rinkeby",
-      accounts: [secret.key]
+      accounts: [process.env.PRIVATE_KEY]
       
     },
     mainnet: {
       url: "https://speedy-nodes-nyc.moralis.io/26e50ab044cfb048e9442a7f/bsc/mainnet",
-      accounts: [secret.key],
+      accounts: [process.env.PRIVATE_KEY],
     }
   },
   etherscan: {
